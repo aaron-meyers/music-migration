@@ -37,7 +37,7 @@ $items | Foreach-Object {
         $probe = ffprobe $itemPath -print_format json -show_format -show_streams -v quiet |
             ConvertFrom-Json
         $probe.streams |
-            Where-Object codec_name -ne mjpeg |
+            Where-Object codec_type -eq audio |
             ForEach-Object {
                 [PSCustomObject] @{
                     Path = $itemPath
