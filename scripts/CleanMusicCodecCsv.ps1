@@ -1,7 +1,7 @@
 param(
     [Parameter()]
     [String]
-    $Path,
+    $Path = 'codecs.csv',
 
     [Parameter()]
     [Switch]
