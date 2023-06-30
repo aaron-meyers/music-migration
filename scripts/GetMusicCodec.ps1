@@ -28,6 +28,7 @@ if ($First) {
 } else {
     $items = Get-ChildItem $Path -Filter $Filter -Recurse:$Recurse
 }
+$relativeTo = (Convert-Path .)
 
 $items | Foreach-Object {
     $itemPath = $_
@@ -40,8 +41,14 @@ $items | Foreach-Object {
             Where-Object codec_type -eq audio |
             ForEach-Object {
                 [PSCustomObject] @{
-                    Path = $itemPath
+                    RelativePath = [System.IO.Path]::GetRelativePath($relativeTo, $itemPath)
                     Codec = $_.codec_name
+                    SampleRate = $_.sample_rate
+                    Channels = $_.channels
+                    ChannelLayout = $_.channel_layout
+                    Duration = $_.duration
+                    BitRate = $_.bit_rate
+                    Path = $itemPath
                 }
             }
     }
