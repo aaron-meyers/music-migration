@@ -99,17 +99,17 @@ https://vgmdb.info/
 1. Rip approx. 10 discs at a time, lossless WMA in WMP (no changes to tagging)
     - Use Apple Lossless instead (using … MusicMonkey? iTunes?)
 2. Fill out tag entry spreadsheet from vgmdb.net or other source
-    a. Copy/paste track list through Word
+    - Copy/paste track list through Word
 3. Download album art (scan if needed)
-    a. Consider using musicbrainz.org for high quality album art
+    - Consider using musicbrainz.org for high quality album art
 4. Tag&Rename: Export metadata to Excel
 5. Excel: Copy tags to metadata xls
 6. Tag&Rename
-    a. Import metadata xls
-    b. Rename files [Action]
-    c. Apply album art to folder
-    d. Apply album art to files
-    e. Add comment if applicable
+    1. Import metadata xls
+    2. Rename files [Action]
+    3. Apply album art to folder
+    4. Apply album art to files
+    5. Add comment if applicable
 7. Delete metadata xls
 8. Rename folders
 9. Move to OneDrive
