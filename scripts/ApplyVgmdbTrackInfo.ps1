@@ -85,6 +85,7 @@ process {
 
         Write-Verbose "atomicparsley $cmdargs"
         & 'atomicparsley' $cmdargs
+        Write-Host ''
     }
 
     if ($Rename) {

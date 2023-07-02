@@ -17,7 +17,27 @@ param(
 
     [Parameter()]
     [String]
-    $AlternateLanguage = 'ja'
+    $AlternateLanguage = 'ja',
+
+    # Album value overrides - these are not typed because default should be $null
+
+    [Parameter()]
+    $Artist,
+
+    [Parameter()]
+    $Album,
+
+    [Parameter()]
+    $AlbumArtist,
+
+    [Parameter()]
+    $Composer,
+
+    [Parameter()]
+    $Genre,
+
+    [Parameter()]
+    $Year
 )
 
 function GetTrackNames($obj) {
@@ -48,7 +68,7 @@ foreach ($disc in $info.discs) {
     foreach ($track in $disc.tracks) {
         $discFmt = $multiDisc ? "$discNo(-?)" : ''
         $trackFmt = '{0:#00}' -f $trackNo
-        $trackRegex = "$discFmt$trackFmt.*"
+        $trackRegex = "^$discFmt$trackFmt.*"
         $matchingTrack = Get-ChildItem -Filter "*.$TrackExtension" |
             Where-Object Name -match $trackRegex
         if ($matchingTrack.Count -ne 1) {
@@ -63,12 +83,12 @@ foreach ($disc in $info.discs) {
             Track = $trackNo
             Title = $trackNames.Combined
             AllTitles = $track.names
-            Artist = $albumInfo.Artist
-            Album = $albumInfo.Album
-            AlbumArtist = $albumInfo.AlbumArtist
-            Composer = $albumInfo.Composer
-            Genre = $albumInfo.Genre
-            Year = $albumInfo.ReleaseYear
+            Artist = $Artist ?? $albumInfo.Artist
+            Album = $Album ?? $albumInfo.Album
+            AlbumArtist = $AlbumArtist ?? $albumInfo.AlbumArtist
+            Composer = $Composer ?? $albumInfo.Composer
+            Genre = $Genre ?? $albumInfo.Genre
+            Year = $Year ?? $albumInfo.ReleaseYear
             Path = $matchingTrack
         }
 

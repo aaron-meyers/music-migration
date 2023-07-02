@@ -25,11 +25,11 @@ function GetNames($obj) {
 
 function MergeNames($names) {
     if ($names) {
-        if ($names.Count -eq 1) {
-            return $names[0].Combined
-        } elseif ($names.Count -eq 2) {
+        if ($names.Length -eq 1) {
+            return $names.Combined
+        } elseif ($names.Length -eq 2) {
             return ($names | Select-Object -ExpandProperty Primary) -join ' & '
-        } elseif ($names.Count -gt 2) {
+        } elseif ($names.Length -gt 2) {
             $initial = ($names | Select-Object -SkipLast 1 -ExpandProperty Primary) -join ', '
             $last = ($names | Select-Object -Last 1 -ExpandProperty Primary)
             return "$initial & $last"
@@ -60,8 +60,8 @@ return [PSCustomObject] @{
     AlbumArtist = $composer ?? $performer
     Artist = $performer ?? $composer
     Composer = $composer
-    Composers = $composers | Select-Object -ExpandProperty Combined
-    Performers = $performers | Select-Object -ExpandProperty Combined
+    AllComposers = $composers | Select-Object -ExpandProperty Combined
+    AllPerformers = $performers | Select-Object -ExpandProperty Combined
     Genre = $info.category
     ReleaseDate = $info.release_date
     ReleaseYear = ($info.release_date | Select-String '^(\d\d\d\d)').Matches?[0].Value
