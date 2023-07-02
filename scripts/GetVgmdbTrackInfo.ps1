@@ -62,6 +62,7 @@ foreach ($disc in $info.discs) {
             Disc = $multiDisc ? $discNo : $null
             Track = $trackNo
             Title = $trackNames.Combined
+            AllTitles = $track.names
             Artist = $albumInfo.Artist
             Album = $albumInfo.Album
             AlbumArtist = $albumInfo.AlbumArtist

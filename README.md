@@ -1,7 +1,37 @@
 # music-migration
 Scripts and tools for migrating music to Apple iCloud Music Library
 
-# Folder structure
+## Prerequisites
+- ffmpeg: ```scoop install ffmpeg```
+- AtomicParsley: ```scoop install atomicparsley```
+
+## Usage
+Initialize environment (adds scripts/ to PATH):
+```powershell
+scripts/InitEnvironment.ps1
+```
+
+Dump codec and other metadata to a codecs.csv file:
+```powershell
+GetAllMusicCodecs.ps1
+
+# Remove any paths from codecs.csv that no longer exist
+CleanMusicCodecCsv.ps1
+```
+
+Download vgmdb.net album info and artwork:
+```powershell
+DownloadVgmdbAlbumInfo.ps1 -AlbumId <id>
+```
+
+View and apply album/track info from vgmdb.net:
+```powershell
+GetVgmdbAlbumInfo.ps1
+GetVgmdbTrackInfo.ps1
+GetVgmdbTrackInfo.ps1 | ApplyVgmdbTrackInfo.ps1 -Tag -Rename
+```
+
+## Target folder structure
 - collection
   - apple-music-matches
   - apple-music-matches-lossy
@@ -21,7 +51,7 @@ Scripts and tools for migrating music to Apple iCloud Music Library
 	
 TBD - what to do with lossy formats that are not in Apple Music and I don't have physical media
 
-# Tasks/flows
+## Migration tasks/flows
 - [x] Change iTunes Import Settings (Edit > Preferences) to use ALAC instead of AAC
 
 - [ ] Check that ffmpeg can convert between ALAC<->FLAC without corrupting Japanese metadata tags
