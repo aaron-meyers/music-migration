@@ -5,20 +5,31 @@ param(
 
     [Parameter()]
     [String]
-    $PrimaryLanguage = 'en',
-
-    [Parameter()]
-    [String]
-    $SecondaryLanguage = 'ja',
-
-    [Parameter()]
-    [String]
     $PrimaryTrackName = 'English',
 
     [Parameter()]
     [String]
-    $SecondaryTrackName = 'Japanese'
+    $AlternateTrackName = 'Japanese',
+
+    [Parameter()]
+    [String]
+    $PrimaryLanguage = 'en',
+
+    [Parameter()]
+    [String]
+    $AlternateLanguage = 'ja'
 )
+
+function GetTrackNames($obj) {
+    $pri = $obj.names."$PrimaryTrackName"
+    $alt = $obj.names."$AlternateTrackName"
+    $combined = ($pri -and $alt) ? "$pri　$alt" : "$pri$alt"
+    return @{
+        Primary = $pri
+        Alternate = $alt
+        Combined = $combined
+    }
+}
 
 $infoPath = Get-Item "vgmdb-album-*.json"
 if ($infoPath.Count -ne 1) {
@@ -26,13 +37,10 @@ if ($infoPath.Count -ne 1) {
     return
 }
 
+$albumInfo = GetVgmdbAlbumInfo -PrimaryLanguage $PrimaryLanguage -AlternateLanguage $AlternateLanguage
+
 $info = Get-Content $infoPath | ConvertFrom-Json
 
-# TODO - Get album names
-
-# TODO - Get composers, performers
-
-# Get track titles and merge with album/artist info
 $multiDisc = ($info.discs.Count -gt 1)
 $discNo = 1
 foreach ($disc in $info.discs) {
@@ -48,10 +56,18 @@ foreach ($disc in $info.discs) {
             return
         }
 
+        $trackNames = GetTrackNames $track
+
         [PSCustomObject] @{
+            Disc = $multiDisc ? $discNo : $null
+            TrackNo = $trackNo
+            Track = $trackNames.Combined
+            Artist = $albumInfo.Artist
+            Album = $albumInfo.Album
+            AlbumArtist = $albumInfo.AlbumArtist
+            Composer = $albumInfo.Composer
+            Year = $albumInfo.ReleaseYear
             Path = $matchingTrack
-            Title1 = $track.names."$PrimaryTrackName"
-            Title2 = $track.names."$SecondaryTrackName"
         }
 
         $trackNo++
