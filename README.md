@@ -19,6 +19,11 @@ GetAllMusicCodecs.ps1
 CleanMusicCodecCsv.ps1
 ```
 
+Convert all lossless media files in a directory to ALAC:
+```powershell
+ConvertToAlac.ps1
+```
+
 Download vgmdb.net album info and artwork:
 ```powershell
 DownloadVgmdbAlbumInfo.ps1 -AlbumId <id>
