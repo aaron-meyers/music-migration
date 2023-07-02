@@ -60,12 +60,13 @@ foreach ($disc in $info.discs) {
 
         [PSCustomObject] @{
             Disc = $multiDisc ? $discNo : $null
-            TrackNo = $trackNo
-            Track = $trackNames.Combined
+            Track = $trackNo
+            Title = $trackNames.Combined
             Artist = $albumInfo.Artist
             Album = $albumInfo.Album
             AlbumArtist = $albumInfo.AlbumArtist
             Composer = $albumInfo.Composer
+            Genre = $albumInfo.Genre
             Year = $albumInfo.ReleaseYear
             Path = $matchingTrack
         }

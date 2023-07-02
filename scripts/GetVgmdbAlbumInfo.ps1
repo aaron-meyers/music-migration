@@ -53,6 +53,8 @@ $performers = $info.performers | Foreach-Object { GetNames $_ }
 $composer = MergeNames $composers
 $performer = MergeNames $performers
 
+$artwork = (Test-Path 'folder.jpg') ? (Get-Item 'folder.jpg') : $null
+
 return [PSCustomObject] @{
     Album = $album.Combined
     AlbumArtist = $composer ?? $performer
@@ -60,6 +62,8 @@ return [PSCustomObject] @{
     Composer = $composer
     Composers = $composers | Select-Object -ExpandProperty Combined
     Performers = $performers | Select-Object -ExpandProperty Combined
+    Genre = $info.category
     ReleaseDate = $info.release_date
     ReleaseYear = ($info.release_date | Select-String '^(\d\d\d\d)').Matches?[0].Value
+    Artwork = $artwork
 }
