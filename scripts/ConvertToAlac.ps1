@@ -19,6 +19,8 @@ foreach ($filter in $extensions) {
     Get-ChildItem $Path -Filter $filter | ForEach-Object {
         $ext = Split-Path $_ -Extension
         if ($ext -eq '.wma') {
+            Write-Warning "Some WMA metadata may be corrupted when converting via ffmpeg"
+
             $codec = (GetMusicCodec $_).codec
             if ($codec -ne 'wmalossless') {
                 if ($Force) {

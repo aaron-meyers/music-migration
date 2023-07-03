@@ -1,0 +1,54 @@
+digraph {
+    fontname="Calibri"
+    node [fontname="Calibri"]
+    edge [fontname="Calibri"]
+
+    node [shape=diamond style=filled fillcolor=gray]
+    is_apple_music_available [label="Available in\nApple Music?"]
+    is_lossless [label="Lossless?"]
+    is_vgmdb_available [label="Available on\nvgmdb.net?"]
+    itunes_matched [label="iTunes\nmatched?"]
+    have_physical_media [label="Physical\nmedia?"]
+    lossy_format [label="Lossy\nformat"]
+
+    node [shape=oval fillcolor=yellow]
+    apple_music_matches [label="apple-music-matches[-lossy]"]
+    itunes_store_matches [label="itunes-store-matches[-lossy]"]
+    icloud_music_pending_rerip [label="icloud-music-pending-rerip"]
+    icloud_music_pending_tags [label="icloud-music-pending-tags"]
+    icloud_music_uploads [label="icloud-music-uploads[-lossy]"]
+
+    node [shape=rect fillcolor=lightblue]
+    rip_media [label="Rip media"]
+    supported_lossy_format [label="Supported format\n(aac, mp3)"]
+    unsupported_lossy_format [label="Unsupported format\n(wma, ogg)"]
+    acquire_lossless [label="Acquire lossless"]
+    convert_flac_to_alac [label="Convert FLAC\nor WAV to ALAC\n(leave WMA as-is)"]
+    copy_to_itunes_media [label="Copy to iTunes Media folder"]
+    add_to_icloud_library [label="Add to iCloud Library"]
+    remove_itunes_media [label="Remove iTunes media"]
+
+    is_apple_music_available -> apple_music_matches [label="yes"]
+
+    is_apple_music_available -> is_lossless [label="no"]
+    is_lossless -> is_vgmdb_available [label="yes"]
+    is_vgmdb_available -> icloud_music_pending_tags [label="yes"]
+    icloud_music_pending_tags -> convert_to_alac -> vgmdb_scripts
+    vgmdb_scripts -> copy_to_itunes_media -> itunes_matched
+    itunes_matched -> itunes_store_matches [label="yes"]
+    itunes_matched -> add_to_icloud_library [label="no"]
+    add_to_icloud_library -> icloud_music_uploads -> remove_itunes_media
+    itunes_store_matches -> remove_itunes_media
+
+    is_vgmdb_available -> convert_flac_to_alac [label="no"]
+    convert_flac_to_alac -> copy_to_itunes_media 
+
+    is_lossless -> have_physical_media [label="no"]
+    have_physical_media -> icloud_music_pending_rerip [label="yes"]
+    icloud_music_pending_rerip -> rip_media -> is_vgmdb_available
+    have_physical_media -> lossy_format [label="no"]
+    lossy_format -> supported_lossy_format -> copy_to_itunes_media
+    supported_lossy_format -> acquire_lossless
+    lossy_format -> unsupported_lossy_format -> acquire_lossless
+    acquire_lossless -> is_vgmdb_available
+}

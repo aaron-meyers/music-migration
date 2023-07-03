@@ -38,23 +38,21 @@ GetVgmdbTrackInfo.ps1 | ApplyVgmdbTrackInfo.ps1 -Tag -Rename
 
 ## Target folder structure
 - collection
-  - apple-music-matches
-  - apple-music-matches-lossy
+  - apple-music-matches[-lossy]
   - icloud-music-pending-rerip
   - icloud-music-pending-tags
-  - icloud-music-uploads
-  - ~~itunes-store-matches~~
-  - ~~itunes-store-matches-lossy~~
+  - icloud-music-uploads[-lossy]
+  - itunes-store-matches[-lossy]
   - itunes-store-purchases
 - downloads
+  - apple-music-matches[-lossy]
   - icloud-music-pending-tags
-  - icloud-music-uploads
+  - icloud-music-uploads[-lossy]
+  - itunes-store-matches[-lossy]
   - itunes-store-pending
 - out-of-print
   - icloud-music-pending-tags
-  - icloud-music-uploads
-	
-TBD - what to do with lossy formats that are not in Apple Music and I don't have physical media
+  - icloud-music-uploads[-lossy]
 
 ## Migration tasks/flows
 - [x] Change iTunes Import Settings (Edit > Preferences) to use ALAC instead of AAC
