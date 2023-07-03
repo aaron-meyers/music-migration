@@ -3,7 +3,7 @@ digraph {
     node [fontname="Calibri"]
     edge [fontname="Calibri"]
 
-    node [shape=diamond style=filled fillcolor=gray]
+    node [shape=diamond style=filled fillcolor=lightgray]
     is_apple_music_available [label="Available in\nApple Music?"]
     is_lossless [label="Lossless?"]
     is_vgmdb_available [label="Available on\nvgmdb.net?"]
@@ -24,7 +24,9 @@ digraph {
     unsupported_lossy_format [label="Unsupported format\n(wma, ogg)"]
     acquire_lossless [label="Acquire lossless"]
     convert_flac_to_alac [label="Convert FLAC\nor WAV to ALAC\n(leave WMA as-is)"]
-    copy_to_itunes_media [label="Copy to iTunes Media folder"]
+    convert_to_alac [label="Convert to ALAC"]
+    vgmdb_scripts [label="Retag with\nvgmdb scripts"]
+    copy_to_itunes_media [label="Copy to\niTunes Media folder"]
     add_to_icloud_library [label="Add to iCloud Library"]
     remove_itunes_media [label="Remove iTunes media"]
 
