@@ -2,7 +2,7 @@
 Scripts and tools for migrating music to Apple iCloud Music Library.
 
 ## Workflow
-See [workflow.gv](/workflow.gv) or [svg](/workflow.gv.svg)
+See [workflow.gv](/workflow.gv) ([svg](/artifacts/workflow.gv.svg))
 
 ## Prerequisites
 - ffmpeg: ```scoop install ffmpeg```
