@@ -7,6 +7,7 @@ See [workflow.gv](/workflow.gv) or [svg](/workflow.gv.svg)
 ## Prerequisites
 - ffmpeg: ```scoop install ffmpeg```
 - AtomicParsley: ```scoop install atomicparsley```
+- ImageMagick: ```scoop install imagemagick```
 
 ## Usage
 Initialize environment (adds scripts/ to PATH):

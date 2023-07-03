@@ -79,6 +79,9 @@ process {
         }
         if ($InputObject.Artwork) {
             $cmdargs += ArgsToArray --artwork $InputObject.Artwork
+
+            # Delete any existing artwork first
+            atomicparsley $path --artwork REMOVE_ALL --overWrite
         }
 
         $cmdargs += '--overWrite'

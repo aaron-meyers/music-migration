@@ -20,6 +20,12 @@ if ($coverUri) {
     $artworkFile = "vgmdb-album-$AlbumId$coverExt"
     Write-Host "Downloading cover art to $artworkFile from $coverUri"
     Invoke-WebRequest -Uri $coverUri -OutFile $artworkFile
+
+    if ($coverExt -ne '.jpg') {
+        $artworkJpgFile = [IO.Path]::ChangeExtension($artworkFile, '.jpg')
+        Write-Host "Converting $artworkFile to $artworkJpgFile"
+        magick convert $artworkFile $artworkJpgFile
+    }
 } else {
     Write-Warning "Missing artwork"
 }
