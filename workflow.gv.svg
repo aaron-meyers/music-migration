@@ -183,15 +183,15 @@
 <path fill="none" stroke="black" d="M124.06,-1067.52C140.45,-1050.81 162.88,-1027.95 180.12,-1010.38"/>
 <polygon fill="black" stroke="black" points="182.56,-1012.89 187.06,-1003.3 177.56,-1007.99 182.56,-1012.89"/>
 </g>
-<!-- remove_itunes_media -->
+<!-- remove_itunes_download -->
 <g id="node21" class="node">
-<title>remove_itunes_media</title>
-<polygon fill="lightblue" stroke="black" points="236,-36 94,-36 94,0 236,0 236,-36"/>
-<text text-anchor="middle" x="165" y="-14.3" font-family="Calibri" font-size="14.00">Remove iTunes media</text>
+<title>remove_itunes_download</title>
+<polygon fill="lightblue" stroke="black" points="247,-36 83,-36 83,0 247,0 247,-36"/>
+<text text-anchor="middle" x="165" y="-14.3" font-family="Calibri" font-size="14.00">Remove iTunes download</text>
 </g>
-<!-- itunes_store_matches&#45;&gt;remove_itunes_media -->
+<!-- itunes_store_matches&#45;&gt;remove_itunes_download -->
 <g id="edge13" class="edge">
-<title>itunes_store_matches&#45;&gt;remove_itunes_media</title>
+<title>itunes_store_matches&#45;&gt;remove_itunes_download</title>
 <path fill="none" stroke="black" d="M159.83,-126.62C160.81,-106.19 162.46,-71.99 163.63,-47.62"/>
 <polygon fill="black" stroke="black" points="167.12,-47.9 164.1,-37.74 160.12,-47.57 167.12,-47.9"/>
 </g>
@@ -225,9 +225,9 @@
 <ellipse fill="yellow" stroke="black" cx="299" cy="-91" rx="118.08" ry="18"/>
 <text text-anchor="middle" x="299" y="-87.3" font-family="Calibri" font-size="14.00">icloud&#45;music&#45;uploads[&#45;lossy]</text>
 </g>
-<!-- icloud_music_uploads&#45;&gt;remove_itunes_media -->
+<!-- icloud_music_uploads&#45;&gt;remove_itunes_download -->
 <g id="edge12" class="edge">
-<title>icloud_music_uploads&#45;&gt;remove_itunes_media</title>
+<title>icloud_music_uploads&#45;&gt;remove_itunes_download</title>
 <path fill="none" stroke="black" d="M267.58,-73.35C249.75,-63.9 227.17,-51.94 207.74,-41.65"/>
 <polygon fill="black" stroke="black" points="209.43,-38.58 198.96,-36.99 206.15,-44.77 209.43,-38.58"/>
 </g>
