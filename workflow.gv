@@ -5,6 +5,7 @@ digraph {
 
     node [shape=diamond style=filled fillcolor=lightgray]
     is_apple_music_available [label="Available in\nApple Music?"]
+    is_apple_music_complete [label="Apple Music album\nis complete?"]
     is_lossless [label="Lossless?"]
     is_vgmdb_available [label="Available on\nvgmdb.net?"]
     itunes_matched [label="iTunes\nmatched?"]
@@ -30,7 +31,9 @@ digraph {
     add_to_icloud_library [label="Add to iCloud Library"]
     remove_itunes_download [label="Remove iTunes download"]
 
-    is_apple_music_available -> apple_music_matches [label="yes"]
+    is_apple_music_available -> is_apple_music_complete [label="yes"]
+    is_apple_music_complete -> apple_music_matches [label="yes"]
+    is_apple_music_complete -> is_lossless [label="no"]
 
     is_apple_music_available -> is_lossless [label="no"]
     is_lossless -> is_vgmdb_available [label="yes"]
