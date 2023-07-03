@@ -28,7 +28,7 @@ digraph {
     convert_to_alac [label="Convert to ALAC"]
     vgmdb_scripts [label="Retag with\nvgmdb scripts"]
     copy_to_itunes_media [label="Copy to\niTunes Media folder"]
-    add_to_icloud_library [label="Add to iCloud Library"]
+    add_to_icloud_library [label="Add to\niCloud Music Library"]
     remove_itunes_download [label="Remove iTunes download"]
 
     is_apple_music_available -> is_apple_music_complete [label="yes"]
