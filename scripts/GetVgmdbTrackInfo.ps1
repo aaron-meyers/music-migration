@@ -37,7 +37,10 @@ param(
     $Genre,
 
     [Parameter()]
-    $Year
+    $Year,
+
+    [Parameter()]
+    $Artwork
 )
 
 function GetTrackNames($obj) {
@@ -89,6 +92,7 @@ foreach ($disc in $info.discs) {
             Composer = $Composer ?? $albumInfo.Composer
             Genre = $Genre ?? $albumInfo.Genre
             Year = $Year ?? $albumInfo.ReleaseYear
+            Artwork = $Artwork ?? $albumInfo.Artwork
             Path = $matchingTrack
         }
 

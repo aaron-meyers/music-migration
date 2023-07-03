@@ -44,6 +44,12 @@ if ($infoPath.Count -ne 1) {
 }
 
 $info = Get-Content $infoPath | ConvertFrom-Json
+if ($info.link -match 'album/(\d+)') {
+    $albumId = $Matches[1]
+} else {
+    Write-Error "Could not parse albumId from $infoPath"
+    return
+}
 
 $album = GetNames $info
 
@@ -53,7 +59,15 @@ $performers = $info.performers | Foreach-Object { GetNames $_ }
 $composer = MergeNames $composers
 $performer = MergeNames $performers
 
-$artwork = (Test-Path 'folder.jpg') ? (Get-Item 'folder.jpg') : $null
+$artworkPath = "vgmdb-album-$albumId.jpg"
+if (Test-Path $artworkPath) {
+    $artwork = Get-Item $artworkPath
+} else {
+    $artworkPath = "vgmdb-album-$albumId.png"
+    if (Test-Path $artworkPath) {
+        $artwork = Get-Item $artworkPath
+    }
+}
 
 return [PSCustomObject] @{
     Album = $album.Combined

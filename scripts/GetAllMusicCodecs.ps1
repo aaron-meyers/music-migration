@@ -25,6 +25,6 @@ $extensions = @(
 )
 
 $output = foreach ($ext in $extensions) {
-    GetMusicCodec -Filter $ext -First -Recurse
+    GetMediaInfo -Filter $ext -First -Recurse
 }
 $output | Export-Csv $Path

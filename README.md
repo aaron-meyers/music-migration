@@ -39,6 +39,16 @@ GetVgmdbTrackInfo.ps1
 GetVgmdbTrackInfo.ps1 | ApplyVgmdbTrackInfo.ps1 -Tag -Rename
 ```
 
+Copy to iTunes Media folder:
+```powershell
+CopyToiTunesMedia.ps1
+```
+
+Move to target folder under artist/album directory:
+```
+TODO - refactor CopyToiTunesMedia script
+```
+
 ## Configuring iTunes for migration
 - Change iTunes Import Settings (Edit > Preferences) to use ALAC instead of AAC
 

@@ -37,11 +37,19 @@ $items | Foreach-Object {
     } else {
         $probe = ffprobe $itemPath -print_format json -show_format -show_streams -v quiet |
             ConvertFrom-Json
+        $tags = $probe.format.tags
         $probe.streams |
             Where-Object codec_type -eq audio |
             ForEach-Object {
                 [PSCustomObject] @{
                     RelativePath = [System.IO.Path]::GetRelativePath($relativeTo, $itemPath)
+                    Title = $tags.title
+                    Artist = $tags.artist
+                    Album = $tags.album
+                    AlbumArtist = $tags.album_artist
+                    Composer = $tags.composer
+                    Genre = $tags.genre
+                    Year = $tags.date
                     Codec = $_.codec_name
                     SampleRate = $_.sample_rate
                     Channels = $_.channels
