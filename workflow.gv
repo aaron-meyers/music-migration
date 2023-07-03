@@ -28,7 +28,7 @@ digraph {
     vgmdb_scripts [label="Retag with\nvgmdb scripts"]
     copy_to_itunes_media [label="Copy to\niTunes Media folder"]
     add_to_icloud_library [label="Add to iCloud Library"]
-    remove_itunes_media [label="Remove iTunes media"]
+    remove_itunes_download [label="Remove iTunes download"]
 
     is_apple_music_available -> apple_music_matches [label="yes"]
 
@@ -39,8 +39,8 @@ digraph {
     vgmdb_scripts -> copy_to_itunes_media -> itunes_matched
     itunes_matched -> itunes_store_matches [label="yes"]
     itunes_matched -> add_to_icloud_library [label="no"]
-    add_to_icloud_library -> icloud_music_uploads -> remove_itunes_media
-    itunes_store_matches -> remove_itunes_media
+    add_to_icloud_library -> icloud_music_uploads -> remove_itunes_download
+    itunes_store_matches -> remove_itunes_download
 
     is_vgmdb_available -> convert_flac_to_alac [label="no"]
     convert_flac_to_alac -> copy_to_itunes_media 
