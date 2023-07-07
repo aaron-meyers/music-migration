@@ -12,9 +12,7 @@ param(
     $OpenInExplorer
 )
 
-function CleanInvalidFileNameChars([String] $name, [String] $replaceWith = '_') {
-    return ($name.Split([IO.Path]::GetInvalidFileNameChars()) -join $replaceWith).Trim()
-}
+Import-Module "$PSScriptRoot/modules/utils.psm1" -Scope Local
 
 # Get AlbumArtist and Album from first m4a file
 $mediaPath = Get-Item *.m4a | Select-Object -First 1

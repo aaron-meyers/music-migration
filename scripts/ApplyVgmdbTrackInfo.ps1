@@ -15,13 +15,11 @@ param(
     $MaxFileNameLength = 80
 )
 
+begin {
+    Import-Module "$PSScriptRoot/modules/utils.psm1" -Scope Local
+}
+
 process {
-    function ArgsToArray { return $args }
-
-    function CleanInvalidFileNameChars([String] $name, [String] $replaceWith = '_') {
-        return ($name.Split([IO.Path]::GetInvalidFileNameChars()) -join $replaceWith).Trim()
-    }
-
     $path = $InputObject.Path
     if (-not $path) {
         Write-Warning "Missing Path property on InputObject, skipping"
