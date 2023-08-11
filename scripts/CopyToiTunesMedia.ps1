@@ -14,8 +14,11 @@ param(
 
 Import-Module "$PSScriptRoot/modules/utils.psm1" -Scope Local
 
-# Get AlbumArtist and Album from first m4a file
-$mediaPath = Get-Item *.m4a | Select-Object -First 1
+# Get AlbumArtist and Album from first file
+$mediaPath = Get-Item $Path | Select-Object -First 1
+if (-not $mediaPath) {
+    throw "Cannot find any files matching $Path"
+}
 $mediaInfo = GetMediaInfo $mediaPath
 
 # Convert to clean directory names
@@ -30,7 +33,7 @@ if (-not (Test-Path $targetDir)) {
 
 $targetPath = Convert-Path $targetDir
 
-# Copy *.m4a files to target folder
+# Copy files to target folder
 Write-Host "Copying from $Path to $targetPath"
 Copy-Item $Path $targetPath
 
