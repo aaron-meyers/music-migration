@@ -40,9 +40,9 @@ foreach ($filter in $extensions) {
         ffmpeg -i $_ -c:a alac -c:v copy $target
 
         $bakPath = Join-Path $parent 'bak'
-        if (-not (Test-Path $bakPath)) {
+        if (-not (Test-Path -LiteralPath $bakPath)) {
             [void] (New-Item $bakPath -Type Directory)
         }
-        Move-Item $_ $bakPath
+        Move-Item -LiteralPath $_ $bakPath
     }
 }

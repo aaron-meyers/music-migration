@@ -21,12 +21,12 @@ param(
 )
 
 if ($First) {
-    $items = Get-ChildItem $Path -Directory -Recurse:$Recurse |
+    $items = Get-ChildItem -LiteralPath $Path -Directory -Recurse:$Recurse |
         Foreach-Object {
             Get-ChildItem -LiteralPath $_ -Filter $Filter | Select-Object -First 1
         }
 } else {
-    $items = Get-ChildItem $Path -Filter $Filter -Recurse:$Recurse
+    $items = Get-ChildItem -LiteralPath $Path -Filter $Filter -Recurse:$Recurse
 }
 $relativeTo = (Convert-Path .)
 

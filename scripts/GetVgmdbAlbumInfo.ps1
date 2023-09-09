@@ -15,7 +15,9 @@ function GetNames($obj) {
 
     $pri = $obj.names."$PrimaryLanguage"
     $alt = $obj.names."$AlternateLanguage"
-    $combined = ($pri -and $alt) ? "$pri　$alt" : "$pri$alt"
+    $combined = ($pri -and $alt) ?
+        (($pri -ne $alt) ?  "$pri　$alt" : $pri) :
+        "$pri$alt"
     return @{
         Primary = $pri
         Alternate = $alt
@@ -43,7 +45,7 @@ if ($infoPath.Count -ne 1) {
     return
 }
 
-$info = Get-Content $infoPath | ConvertFrom-Json
+$info = Get-Content -LiteralPath $infoPath | ConvertFrom-Json
 
 $album = GetNames $info
 
@@ -54,8 +56,8 @@ $composer = MergeNames $composers
 $performer = MergeNames $performers
 
 $artworkPath = (Split-Path $infoPath -LeafBase) + '.jpg'
-if (Test-Path $artworkPath) {
-    $artwork = Get-Item $artworkPath
+if (Test-Path -LiteralPath $artworkPath) {
+    $artwork = Get-Item -LiteralPath $artworkPath
 }
 
 return [PSCustomObject] @{

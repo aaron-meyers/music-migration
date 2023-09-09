@@ -25,7 +25,7 @@ process {
         Write-Warning "Missing Path property on InputObject, skipping"
         return
     }
-    if (-not (Test-Path $path)) {
+    if (-not (Test-Path -LiteralPath $path)) {
         Write-Warning "The specified Path does not exist, skipping"
         return
     }
@@ -99,7 +99,7 @@ process {
         if ($targetName -ne $fileName) {
             Write-Host "Renaming $fileName to $targetName"
             $targetPath = Join-Path (Split-Path $path -Parent) $targetName
-            Move-Item $path $targetPath
+            Move-Item -LiteralPath $path $targetPath
         }
     }
 }

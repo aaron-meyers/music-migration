@@ -46,7 +46,9 @@ param(
 function GetTrackNames($obj) {
     $pri = $obj.names."$PrimaryTrackName"
     $alt = $obj.names."$AlternateTrackName"
-    $combined = ($pri -and $alt) ? "$pri　$alt" : "$pri$alt"
+    $combined = ($pri -and $alt) ?
+        (($pri -ne $alt) ?  "$pri　$alt" : $pri) :
+        "$pri$alt"
     return @{
         Primary = $pri
         Alternate = $alt
@@ -62,7 +64,7 @@ if ($infoPath.Count -ne 1) {
 
 $albumInfo = GetVgmdbAlbumInfo -PrimaryLanguage $PrimaryLanguage -AlternateLanguage $AlternateLanguage
 
-$info = Get-Content $infoPath | ConvertFrom-Json
+$info = Get-Content -LiteralPath $infoPath | ConvertFrom-Json
 
 $multiDisc = ($info.discs.Count -gt 1)
 $discNo = 1

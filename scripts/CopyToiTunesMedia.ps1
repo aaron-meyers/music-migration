@@ -27,7 +27,7 @@ $albumDirName = CleanInvalidFileNameChars $mediaInfo.Album
 
 # Create directory if not exists
 $targetDir = Join-Path $iTunesMediaPath $artistDirName $albumDirName
-if (-not (Test-Path $targetDir)) {
+if (-not (Test-Path -LiteralPath $targetDir)) {
     [void] (New-Item $targetDir -Type Directory)
 }
 
