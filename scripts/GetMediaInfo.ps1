@@ -1,7 +1,7 @@
 param(
     [Parameter()]
     [String]
-    $Path,
+    $Path = '.',
 
     [Parameter()]
     [String]
@@ -21,10 +21,14 @@ param(
 )
 
 if ($First) {
-    $items = Get-ChildItem -LiteralPath $Path -Directory -Recurse:$Recurse |
-        Foreach-Object {
-            Get-ChildItem -LiteralPath $_ -Filter $Filter | Select-Object -First 1
-        }
+    if ($Recurse) {
+        $items = Get-ChildItem -LiteralPath $Path -Directory -Recurse |
+            Foreach-Object {
+                Get-ChildItem -LiteralPath $_ -Filter $Filter | Select-Object -First 1
+            }
+    } else {
+        $items = Get-ChildItem -LiteralPath $Path -Filter $Filter | Select-Object -First 1
+    }
 } else {
     $items = Get-ChildItem -LiteralPath $Path -Filter $Filter -Recurse:$Recurse
 }
